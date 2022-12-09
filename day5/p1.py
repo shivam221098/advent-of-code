@@ -20,25 +20,24 @@ with open("advent.txt", "r", encoding="utf-8") as file:
     # adding alphabets to stack
     for i, pos in enumerate(temp[-1]):
         for j in range(len(temp) - 2, -1, -1):
-            if i < len(temp[j]) and temp[j][i] != "~":
+            if i < len(temp[j]) and temp[j][i] != "~" and temp[j][i] != "~~":
                 tower[int(pos)].push(temp[j][i])
 
     for line in file.readlines():
         if line.strip():
-            nums = list(map(int, re.findall(r"[\d]", line.strip())))
+            nums = list(map(int, re.findall(r"[\d]+", line.strip())))
             moves.append(nums)
-
-for key, value in tower.items():
-    print(key, value)
 
 for ele, from_, to_ in moves:
     from_stack = tower[from_]
     to_stack = tower[to_]
 
-    while ele != from_stack.height:
+    i = 0
+
+    while i != ele:
         to_stack.push(from_stack.pop)
+        i += 1
 
-    to_stack.push(from_stack.pop)
+    # to_stack.push(from_stack.pop)
 
-for key, value in tower.items():
-    print(key, value)
+print("".join(map(lambda x: x.pop, tower.values())))

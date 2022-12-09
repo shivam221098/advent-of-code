@@ -21,3 +21,6 @@ class Stack:
 
     def __str__(self):
         return "[" + ", ".join(self.__stack) + "]"
+
+    def __len__(self):
+        return len(self.__stack)
