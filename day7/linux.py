@@ -15,6 +15,9 @@ class Dir:
     def __iter__(self):
         return self.__files.__iter__()
 
+    def __len__(self):
+        return len(self.__files)
+
     def __str__(self):
         return f"- {self.name} (dir)"
 
@@ -92,7 +95,7 @@ class Linux:
     def create_blob(self, blob):
         self.__current_directory.create_blob(blob)
 
-    def pretty_print(self, current_dir: Dir, level: str = ""):
+    def pretty_print(self, current_dir: Dir, level: str = "  "):
         tree = str(current_dir) + "\n"
         for blob in current_dir:
             if isinstance(blob, Dir):

@@ -35,3 +35,4 @@ while i < len(advent):
     i += 1
 
 print(file_system.pretty_print(file_system.home))
+# print(len(file_system.home))
