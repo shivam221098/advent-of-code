@@ -36,10 +36,18 @@ while i < len(advent):
     i += 1
 
 print(file_system.pretty_print(file_system.home))
-print(len(file_system.home))
-file_system.cd("..")
-# for x in file_system.current_dir:
-#     print(x)
-# file_system.cd("a")
-file_system.cd("d")
-print(file_system.current_dir.size)
+
+
+def solve(dir_):
+    size = 0
+    for blob in dir_:
+        if isinstance(blob, Dir):
+            x = solve(blob)
+            if blob.size < 100000:
+                size += blob.size
+            size += x
+
+    return size
+
+
+print(solve(file_system.home))
