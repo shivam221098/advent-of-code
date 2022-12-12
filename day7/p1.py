@@ -23,6 +23,7 @@ while i < len(advent):
                     blob_info, blob_name = advent[j].split()
                     if blob_info == "dir":
                         new_dir = Dir(blob_name)
+                        new_dir.parent = file_system.current_dir
                         file_system.create_blob(new_dir)
                     else:
                         new_file = File(blob_name, int(blob_info))
@@ -36,3 +37,9 @@ while i < len(advent):
 
 print(file_system.pretty_print(file_system.home))
 print(len(file_system.home))
+file_system.cd("..")
+# for x in file_system.current_dir:
+#     print(x)
+# file_system.cd("a")
+file_system.cd("d")
+print(file_system.current_dir.size)
